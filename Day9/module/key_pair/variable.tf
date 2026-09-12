@@ -1,0 +1,3 @@
+variable "kname" {
+    type = string
+}

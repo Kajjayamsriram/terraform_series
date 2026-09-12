@@ -1,0 +1,4 @@
+vpc,subnet,rt,route,rt-association,igw,nat
+ec2,sg,eip,local-block,peering-connection.
+
+Modularizing

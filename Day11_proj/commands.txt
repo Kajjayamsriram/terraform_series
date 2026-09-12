@@ -1,0 +1,11 @@
+#creates bucket 
+aws s3 mb s3://bloodbankbucket0910
+
+#enables versioning
+aws s3api put-bucket-versioning --bucket bloodbankbucket0910 --versioning-configuration Status=Enabled
+
+#files that need db_endpoint
+sed -i "s/mysqldb/$DB_HOST/g" find-donor.php config.php deletedata.php donate-blood.php search.php signup.php
+
+#unlock if-locked by other user.
+terraform force-unlock ID

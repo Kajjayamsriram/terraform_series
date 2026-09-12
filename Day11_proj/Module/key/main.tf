@@ -1,0 +1,4 @@
+resource "aws_key_pair" "kp" {
+    key_name = var.key_name
+    public_key = file("~/.ssh/dev_key.pub")
+}

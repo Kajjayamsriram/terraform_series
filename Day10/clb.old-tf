@@ -1,0 +1,22 @@
+resource "aws_elb" "clb1" {
+    name = "clbdemo"
+    subnets = [aws_subnet.public1.id, aws_subnet.public2.id]
+    security_groups = [aws_security_group.sg1.id]
+
+    listener {
+        instance_protocol = "http"
+        instance_port = 80
+        lb_protocol = "http"
+        lb_port = 80
+    }
+    health_check {
+      healthy_threshold = 2
+      unhealthy_threshold = 2
+      timeout = 3
+      target = "HTTP:80/"
+      interval = 60
+    }
+}
+
+#Note: CLB don't had target group and static & elastic IPs
+#Here no need to define clb either internal/external based on the subnets it behaves as pvt/public

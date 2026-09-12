@@ -1,0 +1,5 @@
+for_each -- map, set, and list
+replace, (taint) and target
+
+Note:
+Indexing is not for map, and set. It works only for the list and tuple
