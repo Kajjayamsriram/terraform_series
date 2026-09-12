@@ -15,10 +15,10 @@ data "vault_generic_secret" "aws" {
     path = "secret/aws"
 }
 provider "vault" {
-  address = ""
+  address = "http://54.163.67.136:8200"
   token = var.token
 }
-data "vault_kv_secret_v2" "docker" {
+ephemeral "vault_kv_secret_v2" "docker" {
   mount = "secret"
   name  = "docker"
 }

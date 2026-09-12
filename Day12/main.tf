@@ -17,7 +17,7 @@ resource "aws_instance" "inst1" {
     root_block_device {
       volume_size = 10
     }
-    user_data = file(script.sh)
+    user_data = file("app/script.sh")
 }
 
 resource "null_resource" "build_image" {
@@ -30,14 +30,14 @@ resource "null_resource" "build_image" {
   }
 
   provisioner "file" {
-    source      = "script.sh"
-    destination = "/home/ec2-user/script.sh"
+    source      = "app"
+    destination = "/home/ec2-user/"
   }
 
   provisioner "remote-exec" {
     inline = [
       "chmod +x /home/ec2-user/script.sh",
-      "DOCKER_USER='${data.vault_kv_secret_v2.docker.data["username"]}' DOCKER_PASSWORD='${data.vault_kv_secret_v2.docker.data["password"]}' /home/ec2-user/script.sh"
+      "DOCKER_USER='${ephemeral.vault_kv_secret_v2.docker.data["username"]}' DOCKER_PASSWORD='${ephemeral.vault_kv_secret_v2.docker.data["password"]}' /bin/bash /home/ec2-user/script.sh"
     ]
   }
 }
