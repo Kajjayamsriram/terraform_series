@@ -1,0 +1,17 @@
+#install hashicorp vault
+sudo yum install -y yum-utils shadow-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum install vault -y
+
+#run the vault to access from ui
+vault server -dev -dev-listen-address="0.0.0.0:8200"
+
+#create vault secrets using cli
+export VAULT_ADDR='http://0.0.0.0:8200'
+vault kv put secret/aws access_key="" secret_key=""
+vault kv put secret/docker username="" password=""
+
+#install terraform
+sudo yum install -y yum-utils shadow-utils
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+sudo yum install terraform -y
