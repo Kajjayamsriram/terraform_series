@@ -4,7 +4,7 @@ resource "aws_db_subnet_group" "mysql_subnet" {
 }
 
 resource "aws_db_instance" "mysql_db" {
-    identifier = var.iden_name #customers
+    identifier = var.iden_name #devmysqldb
     engine = var.eng #mysql
     engine_version  = var.eng_ver #8.0
     instance_class = var.iclass #db.t4g.micro
@@ -13,7 +13,7 @@ resource "aws_db_instance" "mysql_db" {
     max_allocated_storage = var.max_storage #25
     storage_type = "gp3"
 
-    db_name = var.db_name
+    db_name = var.db_name #customers
     username  = var.usr_name #"root"
     password  = var.pass #"admin123"
 

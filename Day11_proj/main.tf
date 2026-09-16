@@ -140,7 +140,7 @@ module "lt" {
     lt_name = "bllod_lt"
     inst_name = "test_servers"
     lt_des = "This is a demo lt"
-    image_id = "ami-0b6d9d3d33ba97d99" #ubuntu
+    image_id = "ami-0f8a61b66d1accaee" #ubuntu 2024
     sg = module.sg.sg["app"]
     key = "dev_key"
     inst_vol = 11
@@ -215,7 +215,7 @@ module "lb" {
     source = "./Module/alb"
       lb_name = "demolb"
       subnets = [ module.subnet.subnets["public1"].id, module.subnet.subnets["public2"].id ]
-      internal = true
+      internal = false
       vpc_id = module.vpc.vpc_id
       sg = [ module.sg.sg["lb"]]
     depends_on = [ module.sg, module.subnet ]
@@ -233,7 +233,7 @@ module "asg"{
     policy_name = "asg_cpu_scaling"
     policy_type = "TargetTrackingScaling"
     min= 1
-    max= 4
+    max= 2
     desired = 1
     target_value = 60
     sns = module.sns.sns

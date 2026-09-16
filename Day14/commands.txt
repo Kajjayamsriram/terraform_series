@@ -1,0 +1,4 @@
+aws eks update-cluster-config \
+  --name alpha_dev_cluster \
+  --region us-east-1 \
+  --access-config authenticationMode=API_AND_CONFIG_MAP

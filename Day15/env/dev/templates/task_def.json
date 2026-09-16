@@ -1,0 +1,22 @@
+[
+    {
+    "name" : "${cont_name}",
+    "essential" : true,
+    "image" : "${ecr_repo}/${image}:${image_tag}",
+
+    "portMappings" : [
+        {
+            "containerPort" : 80,
+            "protocol" : "tcp"
+        }
+    ],
+    "logConfiguration" : {
+        "logDriver" : "awslogs",
+        "options" : {
+            "awslogs-group" : "${cloudwatch_group}" ,
+            "awslogs-region" : "${region}" ,
+            "awslogs-stream-prefix" : "${cont_name}"
+        }
+    }
+    }
+]

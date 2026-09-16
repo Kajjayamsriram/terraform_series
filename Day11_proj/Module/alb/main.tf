@@ -23,6 +23,11 @@ resource "aws_lb_target_group" "tg" {
       timeout = 5
       interval = 30
     }
+    stickiness {
+    enabled         = true
+    type            = "lb_cookie"
+    cookie_duration = 3600
+    }
 }
 
 resource "aws_lb_listener" "lb_lis" {

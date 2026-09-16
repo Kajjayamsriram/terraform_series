@@ -54,3 +54,6 @@ output "db_pass" {
 output "usr_name" {
   value = module.db.usr_name
 }
+output "lb-dns" {
+  value = module.lb.lb-dns
+}
